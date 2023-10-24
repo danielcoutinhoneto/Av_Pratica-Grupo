@@ -18,9 +18,9 @@ class ListaNomes : public Lista {
 
 public:
     /*
-	O m�todo abaixo pergunta ao usu�rios quantos
-	elementos v�o existir na lista e depois
-	solicita a digita��o de cada um deles
+	O método abaixo pergunta ao usuários quantos
+	elementos vão existir na lista e depois
+	solicita a digitação de cada um deles
 	*/	
 
     void entradaDeDados() {
@@ -41,12 +41,10 @@ public:
         int size = lista.size();
 
         if (size % 2 == 0) {
-            // If the number of names is even, average the middle two names
             string name1 = lista[size / 2 - 1];
             string name2 = lista[size / 2];
             cout << "Mediana: " << name1 << " e " << name2 << endl;
         } else {
-            // If the number of names is odd, simply take the middle name
             string medianName = lista[size / 2];
             cout << "Mediana: " << medianName << endl;
         }
@@ -57,7 +55,7 @@ public:
             string smallestName = *min_element(lista.begin(), lista.end());
             cout << "Menor nome: " << smallestName << endl;
         } else {
-            cout << "A lista está vazia." << endl;
+            cout << "A lista de nomes está vazia." << endl;
         }
     }
 
@@ -66,69 +64,72 @@ public:
             string largestName = *max_element(lista.begin(), lista.end());
             cout << "Maior nome: " << largestName << endl;
         } else {
-            cout << "A lista está vazia." << endl;
+            cout << "A lista de nomes está vazia." << endl;
         }
     }
 };
 
-// class ListaSalarios  {
-// 	vector<float> lista;
+class ListaSalarios : public Lista {
+	vector<float> lista;
 	
-// 	public:
+	public:
 	
-// 	/*
-// 	O m�todo abaixo pergunta ao usu�rios quantos
-// 	elementos v�o existir na lista e depois
-// 	solicita a digita��o de cada um deles
-// 	*/	
+	/*
+	O método abaixo pergunta ao usuários quantos
+	elementos vão existir na lista e depois
+	solicita a digitação de cada um deles
+	*/	
 
-// 	void entradaDeDados() {
-//         int numSalarios;
-//         cout << "Quantos salários serão? ";
-//         cin >> numSalarios;
+	void entradaDeDados() {
+        int numSalarios;
+        cout << "Quantos salários serão? ";
+        cin >> numSalarios;
 
-//         for (int i = 0; i < numSalarios; i++) {
-//             string salario;
-//             cout << "Digite os salários " << (i + 1) << ": ";
-//             cin >> salario;
-//             lista.push_back(salario);
-//         }
-//     }
+        for (int i = 0; i < numSalarios; i++) {
+            float salario;
+            cout << "Digite os salários " << (i + 1) << ": ";
+            cin >> salario;
+            lista.push_back(salario);
+        }
+    }
 			
-// 	 void mostraMediana() {
-//         sort(lista.begin(), lista.end());
-//         int size = lista.size();
+	 void mostraMediana() {
+        if(!lista.empty()) {
+            sort(lista.begin(), lista.end());
 
-//         if (size % 2 == 0) {
-//             // If the number of names is even, average the middle two names
-//             string salario1 = lista[size / 2 - 1];
-//             string salario2 = lista[size / 2];
-//             cout << "Mediana: " << salario1 << " e " << salario2 << endl;
-//         } else {
-//             // If the number of names is odd, simply take the middle name
-//             string medianSalario = lista[size / 2];
-//             cout << "Mediana: " << medianSalario << endl;
-//         }
-//     }
+            int size = lista.size();
+
+            if (size % 2 == 0) {
+                float salario1 = lista[size / 2 - 1];
+                float salario2 = lista[size / 2];
+                cout << "Mediana: " << salario1 << " e " << salario2 << endl;
+            } else {
+                float medianSalario = lista[size / 2];
+                cout << "Mediana: " << medianSalario << endl;
+            }
+        } else {
+            cout << "A lista de salários está vazia." << endl;
+        }
+    }
 	
-// 	 void mostraMenor() {
-//         if (!lista.empty()) {
-//             string smallestSalario = *min_element(lista.begin(), lista.end());
-//             cout << "Menor salário: " << smallestSalario << endl;
-//         } else {
-//             cout << "A lista está vazia." << endl;
-//         }
-//     }
+	 void mostraMenor() {
+        if (!lista.empty()) {
+            float smallestSalario = *min_element(lista.begin(), lista.end());
+            cout << "Menor salário: " << smallestSalario << endl;
+        } else {
+            cout << "A lista de salários está vazia." << endl;
+        }
+    }
 
-//     void mostraMaior() {
-//         if (!lista.empty()) {
-//             string largestSalario = *max_element(lista.begin(), lista.end());
-//             cout << "Maior salário: " << largestSalario << endl;
-//         } else {
-//             cout << "A lista está vazia." << endl;
-//         }
-//     }
-// };
+    void mostraMaior() {
+        if (!lista.empty()) {
+            float largestSalario = *max_element(lista.begin(), lista.end());
+            cout << "Maior salário: " << largestSalario << endl;
+        } else {
+            cout << "A lista de salários está vazia." << endl;
+        }
+    }
+};
 
 int main() {
     vector<Lista*> listaDeListas;
@@ -136,6 +137,10 @@ int main() {
     ListaNomes* listaNomes = new ListaNomes;
     listaNomes->entradaDeDados();
     listaDeListas.push_back(listaNomes);
+
+    ListaSalarios* listaSalarios = new ListaSalarios;
+    listaSalarios->entradaDeDados();
+    listaDeListas.push_back(listaSalarios);
 
     for (Lista* l : listaDeListas) {
         l->mostraMediana();
