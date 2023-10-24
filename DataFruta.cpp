@@ -17,12 +17,6 @@ class ListaNomes : public Lista {
     vector<string> lista;
 
 public:
-    /*
-	O método abaixo pergunta ao usuários quantos
-	elementos vão existir na lista e depois
-	solicita a digitação de cada um deles
-	*/	
-
     void entradaDeDados() {
         int numNames;
         cout << "Qauntos nomes serão? ";
@@ -72,14 +66,7 @@ public:
 class ListaSalarios : public Lista {
 	vector<float> lista;
 	
-	public:
-	
-	/*
-	O método abaixo pergunta ao usuários quantos
-	elementos vão existir na lista e depois
-	solicita a digitação de cada um deles
-	*/	
-
+public:
 	void entradaDeDados() {
         int numSalarios;
         cout << "Quantos salários serão? ";
@@ -131,6 +118,60 @@ class ListaSalarios : public Lista {
     }
 };
 
+class ListaIdades  : public Lista {
+	vector<int> lista;
+
+public:
+    void entradaDeDados() {
+        int numIdades;
+        cout << "Quantos idades serão? ";
+        cin >> numIdades;
+
+        for (int i = 0; i < numIdades; i++) {
+            int idade;
+            cout << "Digite os idades " << (i + 1) << ": ";
+            cin >> idade;
+            lista.push_back(idade);
+        }
+    }
+	
+	void mostraMediana() {
+		if(!lista.empty()) {
+            sort(lista.begin(), lista.end());
+
+            int size = lista.size();
+
+            if (size % 2 == 0) {
+                int idade1 = lista[size / 2 - 1];
+                int idade2 = lista[size / 2];
+                cout << "Mediana: " << idade1 << " e " << idade2 << endl;
+            } else {
+                float medianIdade = lista[size / 2];
+                cout << "Mediana: " << medianIdade << endl;
+            }
+        } else {
+            cout << "A lista de Idades está vazia." << endl;
+        }
+    }
+	
+	void mostraMenor() {
+		 if (!lista.empty()) {
+            float smallestIdade = *min_element(lista.begin(), lista.end());
+            cout << "Menor idade: " << smallestIdade << endl;
+        } else {
+            cout << "A lista de idades está vazia." << endl;
+        }
+    }
+	void mostraMaior() {
+		if (!lista.empty()) {
+            float largestIdade = *max_element(lista.begin(), lista.end());
+            cout << "Maior idade: " << largestIdade << endl;
+        } else {
+            cout << "A lista de idades está vazia." << endl;
+        }
+    }
+};
+
 int main() {
     vector<Lista*> listaDeListas;
 
@@ -142,23 +183,19 @@ int main() {
     listaSalarios->entradaDeDados();
     listaDeListas.push_back(listaSalarios);
 
+    ListaIdades* listaIdades = new ListaIdades;
+	listaIdades->entradaDeDados();
+	listaDeListas.push_back(listaIdades);
+
     for (Lista* l : listaDeListas) {
         l->mostraMediana();
         l->mostraMenor();
         l->mostraMaior();
     }
 
-    // ListaSalarios* listaSalarios = new ListaSalarios;
-    // listaSalarios->entradaDeDados();
-    // listaDeListas.push_back(listaSalarios);
+    
 
-    // for (Lista* l : listaDeListas) {
-    //     l->mostraMediana();
-    //     l->mostraMenor();
-    //     l->mostraMaior();
-    // }
-
-    // Don't forget to release the memory for each object when you're done
+    // Para liberar a memória para cada objeto quando terminar
     // for (Lista* l : listaDeListas) {
     //     delete l;
     // }
