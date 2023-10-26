@@ -5,7 +5,33 @@
 
 using namespace std;
 
+
+class Data {
+	int dia, mes, ano;
+
+public:
+	static int compara(Data d1, Data d2) { 
+		return 0;
+	}
+	
+	Data (int _dia, int _mes, int _ano) {
+		dia = _dia;
+		mes = _mes;
+		ano = _ano;
+	}
+	string toString() {
+		string ret = "";
+		ret.append(to_string(dia));
+		ret.append("/");
+		ret.append(to_string(mes));
+		ret.append("/");
+		ret.append(to_string(ano));
+		return ret;
+	}
+};
+
 class Lista {
+
 public:
     virtual void entradaDeDados() = 0;
     virtual void mostraMediana() = 0;
@@ -59,6 +85,61 @@ public:
             cout << "Maior nome: " << largestName << endl;
         } else {
             cout << "A lista de nomes está vazia." << endl;
+        }
+    }
+};
+
+class ListaDatas : public Lista  {
+	vector<Data> lista;
+	
+public:
+	void entradaDeDados() {
+        int numDatas;
+        cout << "Quantos salários serão? ";
+        cin >> numDatas;
+
+        for (int i = 0; i < numDatas; i++) {
+            int dt_data;
+            cout << "Digite os salários " << (i + 1) << ": ";
+            cin >> dt_data;
+            lista.push_back(dt_data);
+        }
+    }	
+	
+	void mostraMediana() {
+		c if(!lista.empty()) {
+            sort(lista.begin(), lista.end());
+
+            int size = lista.size();
+
+            if (size % 2 == 0) {
+                int data1 = lista[size / 2 - 1];
+                int data2 = lista[size / 2];
+                 cout << "Mediana: " << static_cast<float>(data1 + data2) / 2.0 << endl;
+            } else {
+                int medianData = lista[size / 2];
+                cout << "Mediana: " << medianData << endl;
+            }
+        } else {
+            cout << "A lista de datas está vazia." << endl;
+        }
+    }
+	
+	void mostraMenor() {
+		if (!lista.empty()) {
+            int smallestData = *min_element(lista.begin(), lista.end());
+            cout << "Menor data: " << smallestData << endl;
+        } else {
+            cout << "A lista de datas está vazia." << endl;
+        }
+    }
+
+    void mostraMaior() {
+        if (!lista.empty()) {
+            int largestData = *max_element(lista.begin(), lista.end());
+            cout << "Maior data: " << largestData << endl;
+        } else {
+            cout << "A lista de datas está vazia." << endl;
         }
     }
 };
@@ -178,6 +259,10 @@ int main() {
     ListaNomes* listaNomes = new ListaNomes;
     listaNomes->entradaDeDados();
     listaDeListas.push_back(listaNomes);
+
+    ListaDatas* listaDatas = new ListaDatas;
+    listaDatas->entradaDeDados();
+    listaDeListas.push_back(listaDatas);
 
     ListaSalarios* listaSalarios = new ListaSalarios;
     listaSalarios->entradaDeDados();
