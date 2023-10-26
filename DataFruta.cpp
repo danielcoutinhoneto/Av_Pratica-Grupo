@@ -6,29 +6,29 @@
 using namespace std;
 
 
-class Data {
-	int dia, mes, ano;
+// class Data {
+// 	int dia, mes, ano;
 
-public:
-	static int compara(Data d1, Data d2) { 
-		return 0;
-	}
+// public:
+// 	static int compara(Data d1, Data d2) { 
+// 		return 0;
+// 	}
 	
-	Data (int _dia, int _mes, int _ano) {
-		dia = _dia;
-		mes = _mes;
-		ano = _ano;
-	}
-	string toString() {
-		string ret = "";
-		ret.append(to_string(dia));
-		ret.append("/");
-		ret.append(to_string(mes));
-		ret.append("/");
-		ret.append(to_string(ano));
-		return ret;
-	}
-};
+// 	Data (int _dia, int _mes, int _ano) {
+// 		dia = _dia;
+// 		mes = _mes;
+// 		ano = _ano;
+// 	}
+// 	string toString() {
+// 		string ret = "";
+// 		ret.append(to_string(dia));
+// 		ret.append("/");
+// 		ret.append(to_string(mes));
+// 		ret.append("/");
+// 		ret.append(to_string(ano));
+// 		return ret;
+// 	}
+// };
 
 class Lista {
 
