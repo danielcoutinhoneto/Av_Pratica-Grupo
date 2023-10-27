@@ -9,7 +9,6 @@ using namespace std;
 class Data {
 private:
     int dia, mes, ano;
-    int lista;
 
 public:
     Data(int _dia, int _mes, int _ano) : dia(_dia), mes(_mes), ano(_ano) {}
@@ -47,22 +46,8 @@ public:
     virtual void mostraMediana() = 0;
     virtual void mostraMenor() = 0;
     virtual void mostraMaior() = 0;
-    virtual void listarordem();
+    virtual void listarOrdem() = 0;
     virtual ~Lista() {}
-
-
-  // Adicione o método listarEmOrdem() nas classes ListaDatas, ListaNomes, ListaSalarios e ListaIdades
-
-    template<typename T>
-    T listarEmOrdem(vector<T>& lista) {
-        sort(lista.begin(), lista.end());
-        cout << "Elementos em ordem: ";
-        for (const auto& elemento : lista) {
-            cout << elemento << " ";
-        }
-        cout << endl;
-    }
-
 
     template<typename T>
     T encontraMediana(vector<T> valores) {
@@ -182,8 +167,12 @@ public:
         cout << "O ultimo nome alfabeticamente e: " << encontraMaior(lista) << endl;
     }
 
-    void listarordem() override{
-        listarEmOrdem(lista);
+     void listarOrdem() override {
+        cout << "Nomes ordenados:" << endl;
+        sort(lista.begin(), lista.end());
+        for (const auto& elemento : lista){
+            cout << elemento << endl;
+        }
     }
 };
 
@@ -208,8 +197,13 @@ public:
     void mostraMaior() override {
         cout << "A ultima ultima data cronologicamente e: " << encontraMaior(lista).toString() << endl;
     }
-      void listarordem() override{
-        listarEmOrdem(lista);
+
+    void listarOrdem() override {
+        cout << "Datas ordenadas:" << endl;
+        sort(lista.begin(), lista.end());
+        for (const auto& elemento : lista){
+            cout << elemento.toString() << endl;
+        }
     }
 };
 
@@ -234,8 +228,13 @@ public:
     void mostraMaior() override {
         cout << "O  maior dos salarios e " << encontraMaior(lista) << endl;
     }
-       void listarordem() override{
-        listarEmOrdem(lista);
+    
+    void listarOrdem() override {
+        cout << "Salarios ordenados:" << endl;
+        sort(lista.begin(), lista.end());
+        for (const auto& elemento : lista){
+            cout << elemento << endl;
+        }
     }
 };
 
@@ -260,8 +259,13 @@ public:
     void mostraMaior() override {
         cout << "A maior das idades e: " << encontraMaior(lista) << endl;
     }
-        void listarordem() override{
-        listarEmOrdem(lista);
+    
+    void listarOrdem() override {
+        cout << "Idades ordenadas:" << endl;
+        sort(lista.begin(), lista.end());
+        for (const auto& elemento : lista){
+            cout << elemento << endl;
+        }
     }
 };
 
@@ -321,6 +325,7 @@ public:
             l->mostraMediana();
             l->mostraMenor();
             l->mostraMaior();
+            l->listarOrdem();
             delete l;
             cout << endl;
         }
