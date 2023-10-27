@@ -309,7 +309,7 @@ public:
         for (const auto& elemento : lista){
             cout << elemento.toString() << endl;
         }
-                cout << "pressione <enter> para voltar...";
+        cout << "pressione <enter> para voltar...";
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
 
@@ -369,6 +369,8 @@ public:
         for (const auto& elemento : lista){
             cout << elemento << endl;
         }
+        cout << "pressione <enter> para voltar...";
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }    
 
     void mostrarPrimeirosNElementos() override {
@@ -428,7 +430,10 @@ public:
         for (const auto& elemento : lista){
             cout << elemento << endl;
         }
+        cout << "pressione <enter> para voltar...";
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
+
     void mostrarPrimeirosNElementos() override {
         int resp = 0;
         int count = 0;
