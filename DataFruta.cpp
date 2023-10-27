@@ -46,6 +46,7 @@ public:
     virtual void mostraMediana() = 0;
     virtual void mostraMenor() = 0;
     virtual void mostraMaior() = 0;
+    virtual void listarOrdem() = 0;
     // virtual int Menu() = 0;
     virtual ~Lista() {}
 
@@ -190,7 +191,8 @@ public:
                     break;
                 }
                 case 5: {
-                    // Implemente a funcionalidade de ordenar aqui
+                    cin.ignore();
+                    listarOrdem();
                     break;
                 }
                 case 6: {
@@ -240,6 +242,14 @@ public:
         cout << "pressione <enter> para voltar...";
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
+
+    void listarOrdem() override {
+        cout << "Nomes ordenados:" << endl;
+        sort(lista.begin(), lista.end());
+        for (const auto& elemento : lista){
+            cout << elemento << endl;
+        }
+    }
 };
 
 class ListaDatas : public Lista {
@@ -271,6 +281,14 @@ public:
         cout << "A ultima ultima data cronologicamente e: " << encontraMaior(lista).toString() << endl;
         cout << "pressione <enter> para voltar...";
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
+
+    void listarOrdem() override {
+        cout << "Datas ordenadas:" << endl;
+        sort(lista.begin(), lista.end());
+        for (const auto& elemento : lista){
+            cout << elemento.toString() << endl;
+        }
     }
 };
 
@@ -305,6 +323,14 @@ public:
         cout << "pressione <enter> para voltar...";
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
+
+    void listarOrdem() override {
+        cout << "Salarios ordenados:" << endl;
+        sort(lista.begin(), lista.end());
+        for (const auto& elemento : lista){
+            cout << elemento << endl;
+        }
+    }
 };
 
 class ListaIdades : public Lista {
@@ -337,6 +363,14 @@ public:
         cout << "A maior das idades e: " << encontraMaior(lista) << endl;
         cout << "pressione <enter> para voltar...";
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
+
+    void listarOrdem() override {
+        cout << "Idades ordenadas:" << endl;
+        sort(lista.begin(), lista.end());
+        for (const auto& elemento : lista){
+            cout << elemento << endl;
+        }
     }
 };
 
