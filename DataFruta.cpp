@@ -47,7 +47,7 @@ public:
     virtual void mostraMenor() = 0;
     virtual void mostraMaior() = 0;
     virtual void listarOrdem() = 0;
-    // virtual int Menu() = 0;
+    virtual void mostrarPrimeirosNElementos() = 0;
     virtual ~Lista() {}
 
     template<typename T>
@@ -196,7 +196,8 @@ public:
                     break;
                 }
                 case 6: {
-                    // Implemente a funcionalidade de listar N primeiros aqui
+                    cin.ignore();
+                    mostrarPrimeirosNElementos();
                     break;
                 }
                 case 0: {
@@ -249,6 +250,25 @@ public:
         for (const auto& elemento : lista){
             cout << elemento << endl;
         }
+        cout << "pressione <enter> para voltar...";
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
+
+    void mostrarPrimeirosNElementos() override {
+        int resp = 0;
+        int count = 0;
+        cout << "Informe o posicao que deseja <enter>: ";
+        cin >> resp;
+        cout << "Os primeiras " << resp << " nomes:" << endl;
+        for (const auto& data : lista) {
+            if (count >= resp) {
+                break;
+            }
+            cout << data << endl;
+            ++count;
+        }
+        cout << "pressione <enter> para voltar...";
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
 };
 
@@ -289,6 +309,25 @@ public:
         for (const auto& elemento : lista){
             cout << elemento.toString() << endl;
         }
+                cout << "pressione <enter> para voltar...";
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
+
+    void mostrarPrimeirosNElementos() override {
+        int resp = 0;
+        int count = 0;
+        cout << "Informe o posicao que deseja <enter>: ";
+        cin >> resp;
+        cout << "Os primeiras " << resp << " datas:" << endl;
+        for (const auto& data : lista) {
+            if (count >= resp) {
+                break;
+            }
+            cout << data.toString() << endl;
+            ++count;
+        }
+        cout << "pressione <enter> para voltar...";
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
 };
 
@@ -330,7 +369,25 @@ public:
         for (const auto& elemento : lista){
             cout << elemento << endl;
         }
+    }    
+
+    void mostrarPrimeirosNElementos() override {
+        int resp = 0;
+        int count = 0;
+        cout << "Informe o posicao que deseja <enter>: ";
+        cin >> resp;
+        cout << "Os primeiras " << resp << " salarios:" << endl;
+        for (const auto& data : lista) {
+            if (count >= resp) {
+                break;
+            }
+            cout << data << endl;
+            ++count;
+        }
+        cout << "pressione <enter> para voltar...";
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
+
 };
 
 class ListaIdades : public Lista {
@@ -371,6 +428,22 @@ public:
         for (const auto& elemento : lista){
             cout << elemento << endl;
         }
+    }
+    void mostrarPrimeirosNElementos() override {
+        int resp = 0;
+        int count = 0;
+        cout << "Informe o posicao que deseja <enter>: ";
+        cin >> resp;
+        cout << "Os primeiras " << resp << " idades:" << endl;
+        for (const auto& data : lista) {
+            if (count >= resp) {
+                break;
+            }
+            cout << data << endl;
+            ++count;
+        }
+        cout << "pressione <enter> para voltar...";
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
 };
 
@@ -431,7 +504,7 @@ public:
                 novaLista->executarMenu(menu);
             }
         
-        } while (escolha != 0);
+          } while (escolha != 0);
 
     }
 };
